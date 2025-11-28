@@ -21,12 +21,18 @@ export class LeitoService {
         return leito
     }
 
-    async update(name:string, beingUsed:number){
+    async findAll(){
+        const leitos = await this.repo.find()
+        return leitos
+    }
+
+    async update(name:string, beingUsed:number, totalAmount:number){
         const leito = await this.repo.findOne({where:{name:name}})
         if(!leito){
             throw new Error("Leito was not found")
         }
         leito.beingUsed = beingUsed
+        leito.totalAmount = totalAmount
         return await this.repo.save(leito);
     }
 

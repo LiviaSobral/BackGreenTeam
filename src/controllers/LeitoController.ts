@@ -20,6 +20,14 @@ export class LeitoController{
             res.status(400).json({message: e.message})
         }
     }
+    async findAll(req:Request, res:Response){
+        try{
+            const leitos = await service.findAll()
+            res.json(leitos)
+        }catch(e:any){
+            res.status(400).json({message: e.message})
+        }
+    }
     async getById(req:Request,res:Response){
         try{
             const leito = await service.findById(req.body.id)
@@ -30,7 +38,7 @@ export class LeitoController{
     }
     async update(req:Request,res:Response){
         try{
-            const leito = await service.update(req.body.name, req.body.beingUsed)
+            const leito = await service.update(req.body.name, req.body.beingUsed, req.body.totalAmount)
             res.json(leito)
         }catch(e:any){
             res.status(400).json({message: e.message})

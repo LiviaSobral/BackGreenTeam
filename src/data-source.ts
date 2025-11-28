@@ -13,5 +13,6 @@ export const AppDataSource = new DataSource({
     password: DB_PASSWORD,
     database: DB_NAME,
     synchronize: true,
+    logging:true,
     entities:[Leitos]
 });
